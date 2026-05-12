@@ -20,10 +20,11 @@ type ProfileFormState = {
   dob: string;
   email: string;
   phone: string;
+  password?: string;
 };
 
 type ProfileErrors = Partial<
-  Record<'firstName' | 'dob' | 'email' | 'phone' | 'terms', string>
+  Record<'firstName' | 'dob' | 'email' | 'phone' | 'terms' | 'password', string>
 >;
 
 const OTP_LENGTH = 6;
@@ -47,6 +48,7 @@ const LoginBottomSheet = forwardRef<BottomSheetModal>((_props, ref) => {
     dob: '',
     email: '',
     phone: '',
+    password: '',
   });
 
   const maskedContactValue = useMemo(() => {
@@ -94,7 +96,7 @@ const LoginBottomSheet = forwardRef<BottomSheetModal>((_props, ref) => {
 
   const updateProfileField = (key: keyof ProfileFormState, value: string) => {
     setProfileForm(prev => ({ ...prev, [key]: value }));
-    if (key === 'firstName' || key === 'dob' || key === 'email' || key === 'phone') {
+    if (key === 'firstName' || key === 'dob' || key === 'email' || key === 'phone' || key === 'password') {
       setProfileErrors(prev => ({ ...prev, [key]: undefined }));
     }
   };
@@ -132,6 +134,10 @@ const LoginBottomSheet = forwardRef<BottomSheetModal>((_props, ref) => {
       }
     }
 
+    if (!profileForm.password || profileForm.password.length < 6) {
+      nextErrors.password = 'Password must be at least 6 characters';
+    }
+
     if (!hasAcceptedTerms) {
       nextErrors.terms = 'Please accept terms to continue';
     }
@@ -167,6 +173,7 @@ const LoginBottomSheet = forwardRef<BottomSheetModal>((_props, ref) => {
       dob: '',
       email: '',
       phone: '',
+      password: '',
     });
     setError(null);
   };

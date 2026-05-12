@@ -14,6 +14,9 @@ export type RootStackParamList = {
   MessageToHost: undefined;
   PaymentReview: undefined;
   ViewProfile: undefined;
+  AccountSettings: undefined;
+  PersonalInfo: undefined;
+  ResetPassword: undefined;
   WishlistDetails: { wishlist: any };
 };
 

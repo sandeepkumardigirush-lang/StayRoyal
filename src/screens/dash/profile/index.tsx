@@ -100,7 +100,10 @@ const Profile = () => {
                             icon={item.icon}
                             title={item.title}
                             isLast={item.isLast}
-                            onPress={() => item.id === 'profile' && navigation.navigate('ViewProfile')}
+                            onPress={() => {
+                                if (item.id === 'profile') navigation.navigate('ViewProfile')
+                                if (item.id === 'account') navigation.navigate('AccountSettings')
+                            }}
                         />
                     ))}
                 </View>

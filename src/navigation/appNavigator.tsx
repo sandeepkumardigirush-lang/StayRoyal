@@ -9,6 +9,9 @@ import PaymentReview from '../screens/dash/booking/PaymentReview';
 import VillaDetail from '../screens/dash/home/VillaDetail';
 import SearchResults from '../screens/dash/search/SearchResults';
 import ViewProfile from '../screens/dash/profile/ViewProfile';
+import AccountSettings from '../screens/dash/profile/AccountSettings';
+import PersonalInfo from '../screens/dash/profile/PersonalInfo';
+import ResetPassword from '../screens/dash/profile/ResetPassword';
 import WishlistDetails from '../screens/dash/saved/WishlistDetails';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -48,12 +51,23 @@ const AppNavigator = () => {
         component={ViewProfile}
       />
       <Stack.Screen
+        name="AccountSettings"
+        component={AccountSettings}
+      />
+      <Stack.Screen
+        name="PersonalInfo"
+        component={PersonalInfo}
+      />
+      <Stack.Screen
+        name="ResetPassword"
+        component={ResetPassword}
+      />
+      <Stack.Screen
         name="WishlistDetails"
         component={WishlistDetails}
       />
     </Stack.Navigator>
   );
 };
-
 
 export default AppNavigator;

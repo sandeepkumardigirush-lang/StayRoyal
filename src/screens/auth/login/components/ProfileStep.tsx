@@ -7,6 +7,7 @@ import { COLORS } from '../../../../constants/colors';
 import InputField from '../../../../components/inputField';
 import CustomButton from '../../../../components/commonButton';
 import CommonDatePicker from '../../../../components/commonDatePicker';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 type AuthMethod = 'PHONE' | 'EMAIL';
 
@@ -16,10 +17,11 @@ type ProfileFormState = {
   dob: string;
   email: string;
   phone: string;
+  password?: string;
 };
 
 type ProfileErrors = Partial<
-  Record<'firstName' | 'dob' | 'email' | 'phone' | 'terms', string>
+  Record<'firstName' | 'dob' | 'email' | 'phone' | 'terms' | 'password', string>
 >;
 
 interface ProfileStepProps {
@@ -41,6 +43,7 @@ const ProfileStep: React.FC<ProfileStepProps> = ({
   onToggleTerms,
   onContinue,
 }) => {
+  const insets = useSafeAreaInsets();
   const isPhoneRegistration = authMethod === 'PHONE';
   const secondaryPlaceholder = isPhoneRegistration ? 'Email' : 'Phone number';
   const secondaryValue = isPhoneRegistration ? profileForm.email : profileForm.phone;
@@ -94,6 +97,18 @@ const ProfileStep: React.FC<ProfileStepProps> = ({
         />
       </View>
 
+      <View style={styles.section}>
+        <Text style={styles.sectionTitle}>Password</Text>
+        <InputField
+          placeholder="Password"
+          value={profileForm.password}
+          secureTextEntry
+          autoCapitalize="none"
+          onChangeText={value => onUpdateField('password', value)}
+          error={profileErrors.password}
+        />
+      </View>
+
       <TouchableOpacity style={styles.checkboxRow} activeOpacity={0.8} onPress={onToggleTerms}>
         <View style={[styles.checkbox, hasAcceptedTerms && styles.checkboxActive]}>
           {hasAcceptedTerms && <Check size={scale(14)} color={COLORS.WHITE} strokeWidth={3} />}
@@ -106,7 +121,7 @@ const ProfileStep: React.FC<ProfileStepProps> = ({
       </TouchableOpacity>
       {!!profileErrors.terms && <Text style={styles.errorLabel}>{profileErrors.terms}</Text>}
 
-      <CustomButton title="Agree and continue" onPress={onContinue} style={styles.primaryAction} />
+      <CustomButton title="Agree and continue" onPress={onContinue} style={[styles.primaryAction, { marginBottom: insets.bottom }]} />
     </View>
   );
 };

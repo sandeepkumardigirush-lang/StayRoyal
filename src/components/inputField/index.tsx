@@ -5,6 +5,7 @@ import {
   View,
   Text,
   TextInputProps,
+  Pressable,
 } from 'react-native';
 import Animated, {
   useAnimatedStyle,
@@ -13,6 +14,7 @@ import Animated, {
 } from 'react-native-reanimated';
 import { moderateScale, scale } from 'react-native-size-matters';
 import { COLORS } from '../../constants/colors';
+import { Eye, EyeOff } from 'lucide-react-native';
 
 // Pre-calculate values
 const LABEL_TOP_INITIAL = scale(18);
@@ -33,9 +35,11 @@ const InputField: React.FC<InputFieldProps> = ({
   value,
   onFocus,
   onBlur,
+  secureTextEntry,
   ...props
 }) => {
   const [isFocused, setIsFocused] = useState(false);
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const animatedValue = useSharedValue(value ? 1 : 0);
 
   useEffect(() => {
@@ -70,6 +74,10 @@ const InputField: React.FC<InputFieldProps> = ({
     };
   });
 
+  const togglePasswordVisibility = () => {
+    setIsPasswordVisible(!isPasswordVisible);
+  };
+
   return (
     <View style={styles.container}>
       <View
@@ -82,13 +90,29 @@ const InputField: React.FC<InputFieldProps> = ({
         <Animated.Text style={[styles.floatingLabel, labelStyle]}>
           {placeholder}
         </Animated.Text>
-        <TextInput
-          style={[styles.input, style]}
-          onFocus={handleFocus}
-          onBlur={handleBlur}
-          value={value}
-          {...props}
-        />
+        <View style={styles.row}>
+          <TextInput
+            style={[styles.input, style]}
+            onFocus={handleFocus}
+            onBlur={handleBlur}
+            value={value}
+            secureTextEntry={secureTextEntry && !isPasswordVisible}
+            {...props}
+          />
+          {secureTextEntry && (
+            <Pressable
+              onPress={togglePasswordVisibility}
+              style={styles.eyeIcon}
+              hitSlop={10}
+            >
+              {isPasswordVisible ? (
+                <EyeOff size={scale(18)} color={COLORS.GRAY} />
+              ) : (
+                <Eye size={scale(18)} color={COLORS.GRAY} />
+              )}
+            </Pressable>
+          )}
+        </View>
       </View>
       {error && <Text style={styles.errorText}>{error}</Text>}
     </View>
@@ -117,12 +141,23 @@ const styles = StyleSheet.create({
     position: 'absolute',
     left: scale(12),
   },
+  row: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
   input: {
     fontSize: moderateScale(15),
     color: COLORS.BLACK,
     height: scale(32),
     padding: 0,
     margin: 0,
+    flex: 1,
+  },
+  eyeIcon: {
+    paddingLeft: scale(8),
+    height: scale(32),
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   errorInput: {
     borderColor: COLORS.RED,
