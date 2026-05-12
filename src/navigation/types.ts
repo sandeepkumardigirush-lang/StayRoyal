@@ -1,3 +1,5 @@
+import { Booking } from '../types/booking';
+
 export type RootStackParamList = {
   Welcome: undefined;
   MainTabs: undefined;
@@ -18,6 +20,7 @@ export type RootStackParamList = {
   PersonalInfo: undefined;
   ResetPassword: undefined;
   WishlistDetails: { wishlist: any };
+  BookingDetail: { booking: Booking };
 };
 
 export type BottomTabParamList = {

@@ -1,5 +1,6 @@
 import React from 'react';
-import { StyleSheet, Text, View, ScrollView, TouchableOpacity, Image } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, TouchableOpacity } from 'react-native';
+import FastImage from 'react-native-fast-image';
 import { scale, moderateScale } from 'react-native-size-matters';
 import { Star, ChevronRight } from 'lucide-react-native';
 import { COLORS } from '../../../../constants/colors';
@@ -40,7 +41,7 @@ const ReviewsSection: React.FC<ReviewsSectionProps> = ({ reviews, onViewAll }) =
         {initialReviews.map((review) => (
           <View key={review.id} style={styles.reviewCard}>
             <View style={styles.userInfo}>
-              <Image source={{ uri: review.user.avatar }} style={styles.avatar} />
+              <FastImage source={{ uri: review.user.avatar }} style={styles.avatar} />
               <View>
                 <Text style={styles.userName}>{review.user.name}</Text>
                 <Text style={styles.date}>{review.date}</Text>

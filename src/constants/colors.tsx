@@ -55,8 +55,13 @@ export const COLORS = {
   LIGHT_GRAY_BORDER: '#F0F0F0',
   ACTION_BTN_BG: '#F5F5F5',
 
-  // Status
-  SUCCESS_BG: '#F0FFF4',
-  SUCCESS_BORDER: '#C6F6D5',
-  SUCCESS_TEXT: '#22543D',
+  // Status Backgrounds
+  UPCOMING_BG: '#E3F2FD',
+  COMPLETED_BG: '#E8F5E9',
+  CANCELLED_BG: '#FFEBEE',
+  
+  // UI Elements
+  CARD_BG: '#F8F9FA',
+  ERROR_RED: '#FF5252',
+  DIVIDER: '#F0F0F0',
 };

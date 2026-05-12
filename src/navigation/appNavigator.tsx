@@ -66,6 +66,10 @@ const AppNavigator = () => {
         name="WishlistDetails"
         component={WishlistDetails}
       />
+      <Stack.Screen
+        name="BookingDetail"
+        component={require('../screens/dash/history/BookingDetail').default}
+      />
     </Stack.Navigator>
   );
 };

@@ -1,5 +1,6 @@
 import React, { useRef, useCallback } from 'react';
-import { StyleSheet, Text, View, Image, TouchableOpacity, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, ScrollView } from 'react-native';
+import FastImage from 'react-native-fast-image';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { scale } from 'react-native-size-matters';
 import { ChevronLeft, GraduationCap, Globe, Briefcase, Baby, Clock, Wand2, Music, Lightbulb, BookOpen, Heart, Languages, MapPin } from 'lucide-react-native';
@@ -72,7 +73,14 @@ const ViewProfile = ({ navigation }: any) => {
 
       <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
         <View style={styles.profileCard}>
-          <Image source={{ uri: userImage }} style={styles.avatar} />
+          <FastImage 
+            source={{ 
+              uri: userImage,
+              priority: FastImage.priority.normal 
+            }} 
+            style={styles.avatar} 
+            resizeMode={FastImage.resizeMode.cover}
+          />
           <Text style={styles.name}>{userInfo?.firstName || 'Guest'} {userInfo?.lastName || ''}</Text>
           <Text style={styles.role}>Guest</Text>
         </View>

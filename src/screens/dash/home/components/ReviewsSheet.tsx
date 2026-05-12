@@ -1,5 +1,6 @@
 import React, { useCallback, useMemo, useState, useEffect, forwardRef } from 'react';
-import { StyleSheet, Text, View, Image, ActivityIndicator, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, ActivityIndicator, TouchableOpacity } from 'react-native';
+import FastImage from 'react-native-fast-image';
 import { BottomSheetModal, BottomSheetBackdrop, BottomSheetFlatList } from '@gorhom/bottom-sheet';
 import { scale, moderateScale } from 'react-native-size-matters';
 import { Star, X } from 'lucide-react-native';
@@ -25,7 +26,7 @@ const CHUNK_SIZE = 5;
 const ReviewItem = React.memo(({ item }: { item: Review }) => (
   <View style={styles.reviewItem}>
     <View style={styles.userInfo}>
-      <Image source={{ uri: item.user.avatar }} style={styles.avatar} />
+      <FastImage source={{ uri: item.user.avatar }} style={styles.avatar} />
       <View>
         <Text style={styles.userName}>{item.user.name}</Text>
         <Text style={styles.date}>{item.date}</Text>
