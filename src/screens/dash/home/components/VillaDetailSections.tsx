@@ -41,20 +41,17 @@ interface Props {
 
 const VillaDetailSections = memo(({ villa }: Props) => (
   <View>
-    {/* Features */}
     <View style={styles.sectionDivider} />
     <InfoRow icon={DoorOpen} title="Self check-in" subtitle="Check yourself in with the lockbox." />
     <InfoRow icon={Dog} title="Furry friends welcome" subtitle="Bring your pets along for the stay." />
     <InfoRow icon={Award} title="Shaminder is a Superhost" subtitle="Superhosts are experienced, highly rated Hosts." />
 
-    {/* Description */}
     <View style={styles.sectionDivider} />
 
     <Text style={styles.description} numberOfLines={6}>
       Spacious studio apartment in the heart of Zirakpur on famous Oxford Street—ideal for food & shopping. Features attached bathroom, private kitchen with wooden partition, and premium amenities. Perfect for couples, business travel, and short stays. Central location, easy access, modern comfort and luxury ....
     </Text>
 
-    {/* Where you'll sleep */}
     <View style={styles.sectionDivider} />
     <Text style={styles.sectionTitle}>Where you'll sleep</Text>
     <View style={styles.sleepCard}>
@@ -66,7 +63,6 @@ const VillaDetailSections = memo(({ villa }: Props) => (
       <Text style={styles.sleepSubtitle}>1 king bed</Text>
     </View>
 
-    {/* Amenities */}
     <View style={styles.sectionDivider} />
     <Text style={styles.sectionTitle}>What this place offers</Text>
     <View style={styles.amenitiesListContainer}>
@@ -78,11 +74,10 @@ const VillaDetailSections = memo(({ villa }: Props) => (
       />
     </View>
     <TouchableOpacity style={styles.outlineBtn}>
-  
+
       <Text style={styles.outlineBtnText}>Show all 23 amenities</Text>
     </TouchableOpacity>
 
-    {/* Location / Map */}
     <View style={styles.sectionDivider} />
     <Text style={styles.sectionTitle}>Where you'll be</Text>
     <Text style={styles.locationSubText}>Zirakpur, Punjab, India</Text>

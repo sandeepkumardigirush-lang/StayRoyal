@@ -12,6 +12,7 @@ import { RootStackParamList } from '../../../navigation/types';
 import LoginBottomSheet from '../../auth/login';
 import { BottomSheetModal } from '@gorhom/bottom-sheet';
 import WishlistGrid from './components/WishlistGrid';
+import NotLoggedIn from '../../../components/notLoggedIn';
 
 const Saved = () => {
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
@@ -45,11 +46,11 @@ const Saved = () => {
         <Text style={styles.mainTitle}>Wishlists</Text>
 
         {!isLoggedIn ? (
-          <View style={styles.emptyContainer}>
-            <Text style={styles.emptyTitle}>Log in to see your wishlists</Text>
-            <Text style={styles.emptySubtitle}>You can create, view or edit wishlists once you've logged in.</Text>
-            <CustomButton title="Log in" onPress={() => loginSheetRef.current?.present()} width={scale(100)} />
-          </View>
+          <NotLoggedIn 
+            title="Log in to see your wishlists" 
+            subtitle="You can create, view or edit wishlists once you've logged in." 
+            onLogin={() => loginSheetRef.current?.present()} 
+          />
         ) : wishlists.length > 0 ? (
           <FlatList
             data={wishlists}

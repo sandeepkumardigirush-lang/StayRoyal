@@ -179,7 +179,6 @@ const styles = StyleSheet.create({
     createBtnTextDisabled: {
         color: COLORS.GRAY,
     },
-    // Toast styles
     toastContainer: {
         position: 'absolute',
         bottom: scale(30),

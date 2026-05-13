@@ -13,7 +13,7 @@ const { width: SCREEN_WIDTH } = Dimensions.get('window');
 
 const PropertyCard = ({ item, onUnlike }: { item: any, onUnlike: (id: string) => void }) => {
     const images = item.images || (item.image ? [item.image] : []);
-    
+
     return (
         <View style={styles.cardContainer}>
             <View style={styles.imageWrapper}>
@@ -27,8 +27,8 @@ const PropertyCard = ({ item, onUnlike }: { item: any, onUnlike: (id: string) =>
                         <Text style={styles.badgeText}>Guest favourite</Text>
                     </View>
                 </View>
-                
-                <TouchableOpacity 
+
+                <TouchableOpacity
                     style={styles.wishlistBtn}
                     onPress={() => onUnlike(item.id)}
                 >
@@ -68,9 +68,8 @@ const PropertyCard = ({ item, onUnlike }: { item: any, onUnlike: (id: string) =>
 const WishlistDetails = ({ route, navigation }: any) => {
     const { wishlist: initialWishlist } = route.params;
     const dispatch = useDispatch();
-    
-    // Subscribe to the specific wishlist in store to handle real-time removals
-    const wishlist = useSelector((state: RootState) => 
+
+    const wishlist = useSelector((state: RootState) =>
         state.wishlist.wishlists.find(w => w.name === initialWishlist.name)
     );
 

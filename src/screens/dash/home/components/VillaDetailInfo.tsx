@@ -12,12 +12,10 @@ interface Props {
 
 const VillaDetailInfo = memo(({ villa }: Props) => (
   <View >
-    {/* Title */}
     <Text style={styles.title}>{villa.name}</Text>
     <Text style={styles.locationText}>Entire rental unit in Zirakpur, India</Text>
     <Text style={styles.detailsText}>2 guests · 1 bedroom · 1 bed · 1 bathroom</Text>
 
-    {/* Rating Section */}
     <View style={styles.ratingSection}>
       <View style={styles.ratingCard}>
         <Text style={styles.ratingScore}>{villa.rating}</Text>

@@ -63,7 +63,6 @@ const ReviewsSheet = forwardRef<BottomSheetModal, ReviewsSheetProps>(({ reviews 
     setTimeout(() => {
       setDisplayReviews(prev => {
         const nextBatch = reviews.slice(prev.length, prev.length + CHUNK_SIZE);
-        // Filter out any potential duplicates just in case
         const existingIds = new Set(prev.map(r => r.id));
         const filteredBatch = nextBatch.filter(r => !existingIds.has(r.id));
         return [...prev, ...filteredBatch];

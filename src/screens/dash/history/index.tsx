@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useCallback } from 'react';
+import React, { useState, useMemo, useCallback, useRef } from 'react';
 import { StyleSheet, Text, View, FlatList } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useSelector } from 'react-redux';
@@ -12,6 +12,9 @@ import { RootStackParamList } from '../../../navigation/types';
 import { Booking, BookingStatus } from '../../../types/booking';
 import BookingCard from './components/BookingCard';
 import TabButton from './components/TabButton';
+import LoginBottomSheet from '../../auth/login';
+import { BottomSheetModal } from '@gorhom/bottom-sheet';
+import NotLoggedIn from '../../../components/notLoggedIn';
 
 const CHUNK_SIZE = 5;
 
@@ -64,6 +67,7 @@ const MOCK_BOOKINGS: Booking[] = [
 
 const History = () => {
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();
+  const loginSheetRef = useRef<BottomSheetModal>(null);
   const isLoggedIn = useSelector((state: RootState) => state.user.isLoggedIn);
   const [activeTab, setActiveTab] = useState<BookingStatus>('upcoming');
 
@@ -86,12 +90,13 @@ const History = () => {
       <SafeAreaView style={styles.container}>
         <View style={styles.subContainer}>
           <Text style={styles.mainTitle}>History</Text>
-          <View style={styles.emptyContainer}>
-            <Text style={styles.emptyTitle}>Log in to see your History</Text>
-            <Text style={styles.emptySubtitle}>You can view and manage your upcoming and past bookings once you've logged in.</Text>
-            <CustomButton title="Log in" onPress={() => {}} width={scale(120)} />
-          </View>
+          <NotLoggedIn 
+            title="Log in to see your History" 
+            subtitle="You can view and manage your upcoming and past bookings once you've logged in." 
+            onLogin={() => loginSheetRef.current?.present()} 
+          />
         </View>
+        <LoginBottomSheet ref={loginSheetRef} />
       </SafeAreaView>
     );
   }

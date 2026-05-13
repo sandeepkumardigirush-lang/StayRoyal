@@ -103,15 +103,12 @@ const SliderButton: React.FC<SliderButtonProps> = ({ onSwipeComplete }) => {
   return (
     <View style={styles.container}>
       <View style={styles.track}>
-        {/* Background text / Shimmer effect placeholder */}
         <Animated.View style={[styles.textContainer, animatedTextStyle]}>
           <Text style={styles.text}>Slide to explore</Text>
         </Animated.View>
 
-        {/* Progress Fill */}
         <Animated.View style={[styles.progress, animatedProgressStyle]} />
 
-        {/* Swipe Thumb */}
         <GestureDetector gesture={gesture}>
           <Animated.View style={[styles.thumb, animatedThumbStyle]}>
             <View style={styles.iconCircle}>

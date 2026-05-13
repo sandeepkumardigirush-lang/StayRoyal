@@ -26,7 +26,6 @@ const ProfileInputModal = ({
 }: ProfileInputModalProps) => {
   const [inputValue, setInputValue] = useState(initialValue);
 
-  // Sync state when modal opens
   useEffect(() => {
     if (visible) {
       setInputValue(initialValue);

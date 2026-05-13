@@ -1,6 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, TextInput, View } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { moderateScale, scale } from 'react-native-size-matters';
 import { COLORS } from '../../../../constants/colors';
 import CustomButton from '../../../../components/commonButton';

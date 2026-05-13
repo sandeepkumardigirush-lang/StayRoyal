@@ -73,12 +73,12 @@ const ViewProfile = ({ navigation }: any) => {
 
       <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
         <View style={styles.profileCard}>
-          <FastImage 
-            source={{ 
+          <FastImage
+            source={{
               uri: userImage,
-              priority: FastImage.priority.normal 
-            }} 
-            style={styles.avatar} 
+              priority: FastImage.priority.normal
+            }}
+            style={styles.avatar}
             resizeMode={FastImage.resizeMode.cover}
           />
           <Text style={styles.name}>{userInfo?.firstName || 'Guest'} {userInfo?.lastName || ''}</Text>
@@ -111,7 +111,6 @@ const ViewProfile = ({ navigation }: any) => {
         )}
       </ScrollView>
 
-      {/* Edit Profile Sheet */}
       <EditProfileSheet
         ref={sheetRef}
         onClose={handleCloseSheet}
@@ -180,6 +179,7 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     color: COLORS.BLACK,
     marginBottom: scale(4),
+    textAlign: 'center',
   },
   role: {
     fontSize: scale(14),
@@ -214,7 +214,6 @@ const styles = StyleSheet.create({
     marginBottom: scale(20),
   },
   detailsList: {
-    // No gap here so lines touch edges if needed
   },
   detailItemContainer: {
     paddingVertical: scale(15),

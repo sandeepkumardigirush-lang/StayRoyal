@@ -16,7 +16,6 @@ import { moderateScale, scale } from 'react-native-size-matters';
 import { COLORS } from '../../constants/colors';
 import { Eye, EyeOff } from 'lucide-react-native';
 
-// Pre-calculate values
 const LABEL_TOP_INITIAL = scale(18);
 const LABEL_TOP_FOCUSED = scale(6);
 const LABEL_SIZE_INITIAL = moderateScale(14);
@@ -68,8 +67,8 @@ const InputField: React.FC<InputFieldProps> = ({
       color: error
         ? COLORS.RED
         : animatedValue.value === 1
-        ? COLORS.GRAY
-        : '#999',
+          ? COLORS.GRAY
+          : '#999',
       fontWeight: error ? '700' : '500',
     };
   });

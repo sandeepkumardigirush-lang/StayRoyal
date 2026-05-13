@@ -14,7 +14,6 @@ interface AvatarPickerProps {
   size?: number;
 }
 
-// Request Android permissions before opening camera or gallery
 const requestAndroidPermission = async (method: 'CAMERA' | 'GALLERY'): Promise<boolean> => {
   try {
     if (method === 'CAMERA') {
@@ -37,7 +36,6 @@ const requestAndroidPermission = async (method: 'CAMERA' | 'GALLERY'): Promise<b
       }
       return true;
     } else {
-      // Android 13+ uses READ_MEDIA_IMAGES; older uses READ_EXTERNAL_STORAGE
       const sdkVersion = parseInt(Platform.Version as string, 10);
       const permission =
         sdkVersion >= 33
@@ -68,7 +66,6 @@ const requestAndroidPermission = async (method: 'CAMERA' | 'GALLERY'): Promise<b
 
 const AvatarPicker = ({ image, onImageChange, size = scale(130) }: AvatarPickerProps) => {
   const handlePickImage = async (method: 'CAMERA' | 'GALLERY') => {
-    // Check native module is linked
     if (!NativeModules.ImageCropPicker && !NativeModules.RNCImageCropPicker) {
       Alert.alert(
         'Feature Unavailable',
@@ -78,7 +75,6 @@ const AvatarPicker = ({ image, onImageChange, size = scale(130) }: AvatarPickerP
       return;
     }
 
-    // Request permission on Android first
     if (Platform.OS === 'android') {
       const hasPermission = await requestAndroidPermission(method);
       if (!hasPermission) return;

@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
     fontSize: moderateScale(35),
     fontWeight: 'bold',
     color: COLORS.WHITE,
-    lineHeight: 48,
+    lineHeight: scale(40),
     textShadowColor: 'rgba(0, 0, 0, 0.5)',
     textShadowOffset: { width: 0, height: 2 },
     textShadowRadius: 8,

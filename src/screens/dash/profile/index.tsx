@@ -14,6 +14,7 @@ import { RootState } from '../../../redux/store'
 import CustomButton from '../../../components/commonButton'
 import LoginBottomSheet from '../../auth/login'
 import { BottomSheetModal } from '@gorhom/bottom-sheet'
+import NotLoggedIn from '../../../components/notLoggedIn'
 import { logout } from '../../../redux/userSlice'
 
 const Profile = () => {
@@ -60,14 +61,14 @@ const Profile = () => {
     if (!isLoggedIn) {
         return (
             <View style={styles.container}>
-                <AnimatedHeader title="Profile" scrollY={scrollY} />
+                <AnimatedHeader title="Profile" scrollY={scrollY} showBell={false} />
                 <View style={styles.subContainer}>
-                    <View style={styles.emptyContainer}>
-                        <Text style={styles.mainTitleAlt}>Profile</Text>
-                        <Text style={styles.emptyTitle}>Log in to see your profile</Text>
-                        <Text style={styles.emptySubtitle}>You can create, view or edit your profile once you've logged in.</Text>
-                        <CustomButton title="Log in" onPress={() => loginSheetRef.current?.present()} width={scale(100)} />
-                    </View>
+                    <Text style={styles.mainTitleAlt}>Profile</Text>
+                    <NotLoggedIn
+                        title="Log in to see your profile"
+                        subtitle="You can create, view or edit your profile once you've logged in."
+                        onLogin={() => loginSheetRef.current?.present()}
+                    />
                 </View>
                 <LoginBottomSheet ref={loginSheetRef} />
             </View>
@@ -110,7 +111,6 @@ const Profile = () => {
 
                 <View style={styles.divider} />
 
-                {/* Logout Button */}
                 <View style={styles.settingsContainer}>
                     <SettingItem
                         icon={<LogOut color={COLORS.BLACK} size={scale(22)} strokeWidth={1.5} />}

@@ -86,8 +86,6 @@ const CommonDatePicker: React.FC<CommonDatePickerProps> = ({
 
   return (
     <View style={styles.container}>
-      {/* Use GHTouchableOpacity for BOTH platforms because we are inside a BottomSheetModal.
-          Standard React Native touchables often fail to receive events on Android inside sheets. */}
       <TouchableOpacity
         activeOpacity={0.8}
         onPress={openPicker}

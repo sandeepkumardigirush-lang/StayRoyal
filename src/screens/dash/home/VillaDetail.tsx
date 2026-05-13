@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
     paddingBottom: scale(100),
   },
   body: {
-    marginTop: -scale(24),          // pulls card up over carousel
+    marginTop: -scale(24),
     backgroundColor: COLORS.WHITE,
     borderTopLeftRadius: scale(20),
     borderTopRightRadius: scale(20),
